@@ -4,6 +4,7 @@ import { GameProvider } from './GameComponents/TicTacToeContext';
 import Header from './GameComponents/Header';
 import Board from './GameComponents/Board';
 import CheckWinner from './GameComponents/CheckWinner';
+import ResetButton from './GameComponents/ResetGame';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Board />
       <CheckWinner />
+      <ResetButton/>
     </GameProvider>
   );
 }

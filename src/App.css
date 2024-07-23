@@ -42,3 +42,8 @@ body {
   transform: translateY(0);
   box-shadow: 0 4px #444, 0 4px 10px rgba(0, 0, 0, 0.4);
 }
+
+.reset button {
+  background-color: #bd0606;
+  color: white;
+}
