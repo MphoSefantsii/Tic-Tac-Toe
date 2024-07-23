@@ -12,7 +12,7 @@ const CheckWinner: React.FC = () => {
       if (winner) {
         setWinner(winner);
         setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 2000); // Hide confetti after 2 seconds
+        setTimeout(() => setShowConfetti(false), 2000);
       } else {
         setWinner(null);
       }
