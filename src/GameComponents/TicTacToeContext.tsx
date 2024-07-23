@@ -6,6 +6,7 @@ interface GameContextProps {
   currentPlayer: string;
   setCurrentPlayer: React.Dispatch<React.SetStateAction<string>>;
   checkWinner: (squares: string[]) => string | null;
+  resetGame: () => void;
 }
 
 const initialSquares = Array(9).fill("");
@@ -17,7 +18,7 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState('X');
 
   const checkWinner = (squares: string[]): string | null => {
-    const winningLines = [
+    const lines = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -27,19 +28,23 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       [0, 4, 8],
       [2, 4, 6]
     ];
-  
-    for (const [firstIndex, secondIndex, thirdIndex] of winningLines) {
+
+    for (const [firstIndex, secondIndex, thirdIndex] of lines) {
       if (squares[firstIndex] && squares[firstIndex] === squares[secondIndex] && squares[firstIndex] === squares[thirdIndex]) {
         return squares[firstIndex];
       }
     }
-  
+
     return null;
   };
-  
+
+  const resetGame = () => {
+    setSquares(initialSquares);
+    setCurrentPlayer('X');
+  };
 
   return (
-    <GameContext.Provider value={{ squares, setSquares, currentPlayer, setCurrentPlayer, checkWinner }}>
+    <GameContext.Provider value={{ squares, setSquares, currentPlayer, setCurrentPlayer, checkWinner, resetGame }}>
       {children}
     </GameContext.Provider>
   );

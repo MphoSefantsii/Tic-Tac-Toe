@@ -1,12 +1,20 @@
-const ResetButton = () => {
-    // const handleReset = () => {
-      
-    // }
-    return (  
-        <div className="reset">
-            <button onClick={() => alert('Reset Game')}>Reset Game</button>  
-        </div>
-    );
-}
- 
+import React, { useContext } from 'react';
+import { GameContext } from './TicTacToeContext';
+
+const ResetButton: React.FC = () => {
+  const gameContext = useContext(GameContext);
+
+  if (!gameContext) {
+    return null;
+  }
+
+  const { resetGame } = gameContext;
+
+  return (
+    <button className="reset-button" onClick={resetGame}>
+      Reset
+    </button>
+  );
+};
+
 export default ResetButton;

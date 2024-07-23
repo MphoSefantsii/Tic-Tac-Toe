@@ -1,20 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GameContext } from './TicTacToeContext';
 
 const CheckWinner: React.FC = () => {
   const gameContext = useContext(GameContext);
 
+  const [winner, setWinner] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (gameContext) {
+      const winner = gameContext.checkWinner(gameContext.squares);
+      setWinner(winner);
+    }
+  }, [gameContext]);
+
   if (!gameContext) {
     return null;
   }
 
-  const { squares, checkWinner } = gameContext;
-
-  const winner = checkWinner(squares);
-
   return (
-    <div className="winner">
-      {winner ? <p>Winner: {winner}</p> : <p>No Winner Yet</p>}
+    <div className={`winner ${winner ? 'visible' : ''}`}>
+      {winner ? `Winner: ${winner}` : ''}
+      
     </div>
   );
 };
