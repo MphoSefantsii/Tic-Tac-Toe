@@ -6,6 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .board {
@@ -25,10 +26,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  box-shadow: 0 4px #444, 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .square:hover {
   background-color: #333;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.5);
+}
+
+.square:active {
+  transform: translateY(0);
+  box-shadow: 0 4px #444, 0 4px 10px rgba(0, 0, 0, 0.4);
 }
