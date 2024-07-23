@@ -9,8 +9,6 @@ const Board: React.FC = () => {
     return null;
   }
 
-//   const { squares } = gameContext;
-
   return (
     <div className="board">
       {[0, 1, 2].map(rowIndex => (
