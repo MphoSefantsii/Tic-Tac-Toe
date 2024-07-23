@@ -3,13 +3,19 @@ import { GameContext } from './TicTacToeContext';
 
 const CheckWinner: React.FC = () => {
   const gameContext = useContext(GameContext);
-
   const [winner, setWinner] = useState<string | null>(null);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     if (gameContext) {
       const winner = gameContext.checkWinner(gameContext.squares);
-      setWinner(winner);
+      if (winner) {
+        setWinner(winner);
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 2000); // Hide confetti after 2 seconds
+      } else {
+        setWinner(null);
+      }
     }
   }, [gameContext]);
 
@@ -18,9 +24,22 @@ const CheckWinner: React.FC = () => {
   }
 
   return (
-    <div className={`winner ${winner ? 'visible' : ''}`}>
-      {winner ? `Winner: ${winner}` : ''}
-      
+    <div>
+      <div className={`winner-popup ${winner ? 'visible' : ''}`}>
+        {winner ? `Winner: ${winner}` : ''}
+      </div>
+      {showConfetti && (
+        <div className="confetti">
+          {Array.from({ length: 100 }).map((_, i) => (
+            <div key={i} style={{
+              top: `${Math.random() * 100}vh`,
+              left: `${Math.random() * 100}vw`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+              animationDuration: `${Math.random() * 2 + 1}s`
+            }} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
