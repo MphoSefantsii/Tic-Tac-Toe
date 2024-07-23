@@ -1,4 +1,7 @@
 const ResetButton = () => {
+    // const handleReset = () => {
+      
+    // }
     return (  
         <div className="reset">
             <button onClick={() => alert('Reset Game')}>Reset Game</button>  

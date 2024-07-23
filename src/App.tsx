@@ -1,4 +1,3 @@
-//import React from 'react';
 import './App.css';
 import { GameProvider } from './GameComponents/TicTacToeContext';
 import Header from './GameComponents/Header';

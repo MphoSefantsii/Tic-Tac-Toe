@@ -17,7 +17,7 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState('X');
 
   const checkWinner = (squares: string[]): string | null => {
-    const lines = [
+    const winningLines = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -27,15 +27,16 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       [0, 4, 8],
       [2, 4, 6]
     ];
-
-    for (const [a, b, c] of lines) {
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+  
+    for (const [firstIndex, secondIndex, thirdIndex] of winningLines) {
+      if (squares[firstIndex] && squares[firstIndex] === squares[secondIndex] && squares[firstIndex] === squares[thirdIndex]) {
+        return squares[firstIndex];
       }
     }
-
+  
     return null;
   };
+  
 
   return (
     <GameContext.Provider value={{ squares, setSquares, currentPlayer, setCurrentPlayer, checkWinner }}>
