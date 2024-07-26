@@ -28,15 +28,20 @@ const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       [0, 4, 8],
       [2, 4, 6]
     ];
-
+  
     for (const [firstIndex, secondIndex, thirdIndex] of lines) {
       if (squares[firstIndex] && squares[firstIndex] === squares[secondIndex] && squares[firstIndex] === squares[thirdIndex]) {
         return squares[firstIndex];
       }
     }
-
+  
+    if (squares.every(square => square !== "")) {
+      return "Draw";
+    }
+  
     return null;
   };
+  
 
   const resetGame = () => {
     setSquares(initialSquares);
